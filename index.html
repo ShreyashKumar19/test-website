@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S.K. Enterprises</title>
+  <style>
+    body {
+      background-color: beige;
+    }
+    .header {
+      display: flex;
+      max-height: 70px;
+      padding: 10px 20px;
+      margin-bottom: 8px;
+      background-color: white;
+    }
+    .logo img {
+      height: 70px;
+      margin-left: 80px;
+    }
+    .search-bar {
+      display: flex;
+      flex: 1;
+      margin-left: 100px;
+      max-width: 600px;
+      height: 50px;
+      margin-bottom: 8px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      overflow: hidden;
+      background-color: #f0f5ff;
+    }
+    .search-bar input {
+      flex: 1;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      outline: none;
+      background: transparent;
+    }
+    .search-bar button {
+      background: transparent;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    #loginbtn {
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-decoration: none;
+      color: black;
+      margin-left: 80px;
+    }
+    #loginbtn img {
+      margin-right: 8px;
+    }
+    #cartbtn {
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-decoration: none;
+      color: black;
+      margin-left: 80px;
+    }
+    #cartbtn img {
+      margin-right: 8px;
+    }
+    #helpbtn {
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-decoration: none;
+      color: black;
+      margin-left: 80px;
+    }
+    #helpbtn img {
+      margin-right: 8px;
+    }
+    .category {
+      display: flex;
+      margin-top: 8px;
+      justify-content: space-around;
+      background-color: white;
+    }
+    .category div a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: black;
+    }
+    .category div a img {
+      height: 40px;
+      padding: 6px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      margin-bottom: 5px;
+    }
+    .category div a.active {
+      font-weight: bold;
+    }
+    .category div a.active img {
+      background-color: #6db6eb;
+    }
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .carousel a {
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .carousel img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    .carousel-buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .carousel-buttons span {
+      width: 10px;
+      height: 10px;
+      background: #ccc;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .carousel-buttons .active {
+      background: #000;
+    }
+    .recommended {
+      margin-top: 10px;
+      padding: 5px;
+      background-color: white;
+    }
+    .p-cat {
+      font-size: 40px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+    .p-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+    }
+    .p-card {
+      background: rgb(216, 214, 214);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+    .p-card img {
+      width: 100%;
+    }
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .old-price {
+      font-size: 18px;
+      text-decoration: line-through;
+      color: rgb(71, 69, 69);
+      margin-left: 5px;
+    }
+    .p-card a {
+      color: black;
+      text-decoration: none;
+      display: block;
+    }
+    .p-card-more {
+      display: flex;
+      justify-content: center;
+      margin-top: 170px;
+    }
+    .p-card-more a {
+      color: black;
+      text-decoration: none;
+      font-size: 30px;
+    }
+    .p-card-more a:hover {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo" height="40">
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchbox" placeholder="Search for Products">
+      <button onclick="searchNow()">
+        🔍
+      </button>
+    </div>
+    <div class="login-section">
+      <p><a href="login.html" id="loginbtn"><img src="login.png" height="25">Login</a></p>
+    </div>
+    <div class="cart-section">
+      <p><a href="cart.html" id="cartbtn"><img src="cart.png" height="25">Cart</a></p>
+    </div>
+    <div class="help-section">
+      <p><a href="help.html" id="helpbtn"><img src="help.png" height="25">Chat with Us</a></p>
+    </div>
+  </header>
+  <main>
+    <section class="category">
+      <div>
+        <p><a href="index.html"><img src="foryou.png" height="30">For You</a></p>
+      </div>
+      <div>
+        <p><a href="fashion.html"><img src="fashion.png" height="30">Fashion</a></p>
+      </div>
+      <div>
+        <p><a href="mobiles.html"><img src="mobiles.png" height="30">Mobiles</a></p>
+      </div>
+      <div>
+        <p><a href="electronics.html"><img src="electronics.png" height="30">Electronics</a></p>
+      </div>
+      <div>
+        <p><a href="beauty.html"><img src="beauty.png" height="30">Beauty</a></p>
+      </div>
+      <div>
+        <p><a href="grocery.html"><img src="grocery.png" height="30">Grocery</a></p>
+      </div>
+      <div>
+        <p><a href="books.html"><img src="books.png" height="30">Books</a></p>
+      </div>
+      <div>
+        <p><a href="sports.html"><img src="sports.png" height="30">Sports</a></p>
+      </div>
+      <div>
+        <p><a href="toys.html"><img src="toys.png" height="30">Toys</a></p>
+      </div>
+    </section>
+    <section class="latest">
+      <div class="carousel">
+        <div class="carousel-track">
+          <a href="iqooz10r.html"><img src="mobilesad.png"></a>
+          <a href="intel.html"><img src="laptopad.png"></a>
+          <a href="electronics.html"><img src="electronicsad.png"></a>
+          <a href="fashion.html"><img src="fashionad.png"></a>
+          <a href="beauty.html"><img src="beautyad.png"></a>
+          <a href="smartwatches.html"><img src="watchad.png"></a>
+          <a href="earbuds.html"><img src="earbudsad.png"></a>
+          <a href="sportsshoes.html"><img src="shoesad.png"></a>
+          <a href="books.html"><img src="booksad.png"></a>
+          <a href="toys.html"><img src="toysad.png"></a>
+        </div>
+        <div class="carousel-buttons">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </section>
+    <section class="recommended">
+      <h1 class="p-cat">Recommended deals for you</h1>
+      <div class="p-col">
+        <div class="p-card">
+          <a href="sonybravia2-43.html">
+            <img src="bravia2-43.png">
+            <h3>Sony 43 inches Bravia 2M2 Series 4K Ultra HD Smart LED Google TV</h3>
+            <div class="price">
+              ₹40,990 <span class="old-price">₹59,900</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card">
+          <a href="m36-5g-6,128.html">
+            <img src="m36-5g-6,128.png">
+            <h3>Samsung Galaxy M36 5G</h3>
+            <div class="price">
+              ₹17,499 <span class="old-price">₹22,999</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card">
+          <a href="philips-hd9252.html">
+            <img src="philips-hd9252(1).png">
+            <h3>PHILIPS 4.1L Digital Airfryer with Touch Panel</h3>
+            <div class="price">
+              ₹8,799 <span class="old-price">₹11,995</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card">
+          <a href="philips-hl7756.html">
+            <img src="philips-hl7756(1).png">
+            <h3>PHILIPS HL7756/01 750 Watt Mixer Grinder</h3>
+            <div class="price">
+              ₹3,499 <span class="old-price">₹4,795</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card">
+          <a href="oneplus-nord-buds-3.html">
+            <img src="oneplus-nord-buds-3.png">
+            <h3>OnePlus Nord Buds 3 with up to 32dB ANC</h3>
+            <div class="price">
+              ₹2,299 <span class="old-price">₹2,799</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card">
+          <a href="fire-boltt-ninja-calling-pro-plus.html">
+            <img src="fire-boltt-ninja-calling-pro-plus.png">
+            <h3>Fire-Boltt Ninja Calling Pro Plus</h3>
+            <div class="price">
+              ₹1,399 <span class="old-price">₹2,799</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card">
+          <a href="lenovo-loq-83gs00lnin.html">
+            <img src="lenovo-loq-83gs00lnin.png">
+            <h3>Lenovo LOQ 2024 12th Gen Intel Core I5-12450HX | NVIDIA RTX 3050 6GB</h3>
+            <div class="price">
+              ₹70,490 <span class="old-price">₹96,590</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card">
+          <a href="adidas-solarboost-5-m-shoe.html">
+            <img src="adidas-solarboost-5-m-shoe.png">
+            <h3>ADIDAS SOLARBOOST 5 M Running Shoes For Men</h3>
+            <div class="price">
+              ₹6,715 <span class="old-price">₹12,999</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card">
+          <a href="safari-omegaplus19fbblk-backpack.html">
+            <img src="safari-omegaplus19fbblk-backpack.png">
+            <h3>Safari Omega Plus 30L Laptop Backpack</h3>
+            <div class="price">
+              ₹799 <span class="old-price">₹2,499</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-card-more">
+          <a href="recommended-products.html">
+            show more →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    function searchNow() {
+      let query = document.getElementById("searchbox").value;
+      alert("You searched for: " + query);
+    }
+    const categoryLinks = document.querySelectorAll('.category div a');
+    categoryLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        categoryLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    const currentPage = window.location.pathname.split('/').pop();
+    categoryLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPage) {
+        link.classList.add('active');
+      }
+    });
+    const track = document.querySelector(".carousel-track");
+    const buttons = document.querySelectorAll(".carousel-buttons span");
+    const slides = document.querySelectorAll(".carousel a");
+    let index = 0;
+    const imagesPerDot = 2;
+    function moveCarousel() {
+      index++;
+      if (index>= slides.length) index = 0;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      let dotIndex = Math.floor(index / imagesPerDot);
+      buttons.forEach(b => b.classList.remove("active"));
+      buttons[dotIndex].classList.add("active");
+    }
+    setInterval(moveCarousel, 3000);
+  </script>
+</body>
+</html>
