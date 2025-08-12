@@ -203,6 +203,60 @@
     .p-card-more a:hover {
       color: blue;
     }
+    @media (max-width: 768px) {
+      .header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        padding: 10px;
+      }
+      .logo img {
+        margin-left: 0px;
+        height: 50px;
+      }
+      .search-bar {
+        margin: 10px auto;
+        max-width: 90%;
+        height: 40px;
+      }
+      #loginbtn, #cartbtn, #helpbtn {
+        font-size: 18px;
+        margin-left: 10px;
+      }
+      .login-section, .cart-section, .help-section {
+        margin: 5px;
+      }
+      .category {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .category div a img {
+        height: 30px;
+      }
+      .p-cat {
+        font-size: 24px;
+        text-align: center;
+      }
+    }
+    @media (max-width: 480px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+      .search-bar {
+        order: 3;
+      }
+      #loginbtn, #cartbtn, #helpbtn {
+        font-size: 16px;
+        margin-left: 0;
+      }
+      .p-col {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .p-card-more a {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 <body>
