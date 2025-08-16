@@ -230,13 +230,11 @@
         margin-bottom: 4px;
       }
       .menu-icon {
-        position: fixed;
         top: 15px;
         left: 15px;
         width: 30px;
         height: 30px;
         cursor: pointer;
-        z-index: 1001;
       }
       .menu-icon span {
         display: block;
@@ -275,7 +273,11 @@
         display: block;
       }
       .logo img {
-        height: 45px;
+        max-height: 45px;
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        margin: 0 15px;
       }
       .pc-search-bar {
         display: none;
@@ -316,8 +318,11 @@
         font-size: 14px;
       }
       #loginbtn, #cartbtn {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
         font-size: 18px;
-        margin-left: 45px;
+        margin: 0 10px;
       }
       #helpbtn {
         display: none;
